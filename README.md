@@ -1,6 +1,6 @@
-# RPC Push Transaction Using CORDA
+# INERY RPC Push Transaction Using CORDA
 
-To create an RPC push transaction using Corda on a VPS SSH Ubuntu 20, you will need to follow these steps:
+To create an RPC push transaction, you will need to follow these steps:
 
 #### Install Node.js: Run the following commands to install Node.js and npm:
 ```
