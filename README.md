@@ -28,10 +28,22 @@ npm init -y
 ```
 npm install $HOME/ineryjs dotenv
 ```
-5. Create a new file called index.js and paste your smart contract code into it.
-```
-nano index.j
-```
+5. Create a new file called `index.js` and paste your smart contract code into it.
+
+The `index.js` file is a JavaScript file that imports some dependencies and defines four functions for interacting with the Inery blockchain smart contract. The four functions are:
+
+`createData()`: This function creates a new record in the smart contract by calling the `create()` action on the contract's account using the API object. It takes no arguments and logs the result to the console.
+
+`readData()`: This function reads an existing record from the smart contract by calling the `read()` action on the contract's account using the API object. It takes no arguments and logs the result to the console.
+
+`updateData()`: This function updates an existing record in the smart contract by calling the `update()` action on the contract's account using the API object. It takes no arguments and logs the result to the console.
+
+`deleteData()`: This function deletes an existing record from the smart contract by calling the `destroy()` action on the contract's account using the API object. It takes no arguments and logs the result to the console.
+
+The file also creates some variables to hold the API object, the contract account name, and some other configuration options that are loaded from environment variables using the dotenv library. These variables are used by the four functions to perform the required actions on the smart contract.
+
+This file also imports `dotenv` to load environment variables from the `.env` file and uses those values to establish a connection to the Inery JSON-RPC node using `JsonRpc`, and sign transactions with a private key using `JsSignatureProvider`. All of these functions are used to interact with the smart contract using the `Api` object. The account used is defined in the `ACCOUNT` environment variable.
+
 6. Set environment variables: Set the following environment variables in a .env file:
 ```
 NODE_URL=http://localhost:10000
