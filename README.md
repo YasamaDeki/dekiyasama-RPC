@@ -1,14 +1,14 @@
-# RPC Push Transaction Using CORDA
+# INERY RPC Push Transaction
 
-To create an RPC push transaction using Corda on a VPS SSH Ubuntu 20, you will need to follow these steps:
+To create an RPC push transaction, you will need to follow these steps:
 
-#### Install Node.js: Run the following commands to install Node.js and npm:
+### Install Node.js: Run the following commands to install Node.js and npm:
 ```
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-#### Clone Ineryjs
+### Clone Ineryjs
 ```
 git clone https://github.com/inery-blockchain/ineryjs
 ```
@@ -16,7 +16,7 @@ git clone https://github.com/inery-blockchain/ineryjs
 cd ineryjs
 npm install
 ```
-#### Create a new directory for your project and navigate into it:
+### Create a new directory for your project and navigate into it:
 ```
 mkdir my-project
 ```
@@ -28,7 +28,7 @@ npm init -y
 ```
 npm install $HOME/ineryjs dotenv
 ```
-#### Create a new file called `index.js` and paste your smart contract code into it.
+### Create a new file called `index.js` and paste your smart contract code into it.
 
 The `index.js` file is a JavaScript file that imports some dependencies and defines four functions for interacting with the Inery blockchain smart contract. The four functions are:
 
@@ -44,7 +44,7 @@ The file also creates some variables to hold the API object, the contract accoun
 
 This file also imports `dotenv` to load environment variables from the `.env` file and uses those values to establish a connection to the Inery JSON-RPC node using `JsonRpc`, and sign transactions with a private key using `JsSignatureProvider`. All of these functions are used to interact with the smart contract using the `Api` object. The account used is defined in the `ACCOUNT` environment variable.
 
-#### Set environment variables: Set the following environment variables in a .env file:
+### Set environment variables: Set the following environment variables in a .env file:
 ```
 NODE_URL=http://localhost:10000
 PRIV_KEY=<private-key>
@@ -68,7 +68,7 @@ async function createData() {
 }
 ```
 
-#### Save the file and run the following command to start the script:
+### Save the file and run the following command to start the script:
 ```
 node index.js
 ```
