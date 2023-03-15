@@ -1,43 +1,38 @@
 # RPC Push Transaction Using CORDA
 
-Here are the step-by-step instructions to install Corda and run the RPC push transaction using the smart contract you provided on a VPS SSH Ubuntu 20:
+To create an RPC push transaction using Corda on a VPS SSH Ubuntu 20, you will need to follow these steps:
 
-1. Install Java 8: Run the following command to install Java 8 on your VPS:
-
-```
-sudo apt install openjdk-8-jdk
-```
-
-2. Install Corda: Run the following command to download and install the Corda binaries:
-```
-wget https://dl.bintray.com/corda/maven/net/corda/corda/4.8/corda-4.8.jar
-```
-
-3. Run Corda: Run the following command to start the Corda node:
-```
-java -jar corda-4.8.jar
-```
-
-4. Connect to the Corda node: Once Corda is up and running, you can connect to it from your local machine using SSH port forwarding. Run the following command on your local machine:
-```
-ssh -L 10000:localhost:10000 user@<vps-ip>
-```
-
-5. Install Node.js: Run the following commands to install Node.js and npm:
+1. Install Node.js: Run the following commands to install Node.js and npm:
 ```
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
-6. Clone Ineryjs
+
+2. Clone Ineryjs
 ```
 git clone https://github.com/inery-blockchain/ineryjs
 ```
-7. Run the following command to install ineryjs:
 ```
 cd ineryjs
 npm install
 ```
-8. Set environment variables: Set the following environment variables in a .env file:
+3. Create a new directory for your project and navigate into it:
+```
+mkdir my-project
+```
+```
+cd my-project
+npm init -y
+```
+4. Install the required packages:
+```
+npm install $HOME/ineryjs dotenv
+```
+5. Create a new file called index.js and paste your smart contract code into it.
+```
+nano index.j
+```
+6. Set environment variables: Set the following environment variables in a .env file:
 ```
 NODE_URL=http://localhost:10000
 PRIV_KEY=<private-key>
@@ -45,19 +40,25 @@ ACCOUNT=<account-name>
 ```
 Replace "<private-key>" with your private key and "<account-name>" with the name of your account.
 
-9. Run the script: Run the script you provided using the following command:
+7. Update the code to use the `rpc.send` function instead of the `console.log` function to push the transaction to the blockchain.
 ```
-node <script-name>.js
+async function createData() {
+  try {
+    const result = await rpc.send({
+      actions: [api.with(account).as(account).create(id, account, data)]
+    })
+    console.log(result.processed.action_traces[0].act.name)
+    console.log(result.processed.action_traces[0].console)
+    console.log(result.processed.action_traces[0])
+  } catch (error) {
+    console.error(error)
+  }
+}
 ```
-Replace "<script-name>" with the name of your script.
-
-That's it! The script will execute and you should see the output on the console.
-
+8. Save the file and run the following command to start the script:
 ```
-
+node index.js
 ```
+This should execute the four functions `createData()`, `readData()`, `updateData()`, and `deleteData()` and push the transactions to the blockchain using RPC.
 
-```
-
-```
-
+Note that you may need to configure your firewall settings to allow incoming and outgoing traffic on the relevant ports to ensure that the RPC requests are successfully sent and received.
